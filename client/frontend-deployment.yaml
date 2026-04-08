@@ -1,0 +1,26 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: frontend
+spec:
+  replicas: 5
+  selector:
+    matchLabels:
+      app: frontend
+  template:
+    metadata:
+      labels:
+        app: frontend
+    spec:
+      containers:
+        - name: frontend
+          image: 334321696913.dkr.ecr.ap-southeast-2.amazonaws.com/todoapp/client:latest
+          ports:
+            - containerPort: 3000
+          resources:
+            requests:
+              cpu: "100m"
+              memory: "128Mi"     # minimum memory guaranteed
+            limits:
+              cpu: "300m"
+              memory: "512Mi"     # max memory the container can use
